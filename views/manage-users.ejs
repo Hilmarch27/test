@@ -1,0 +1,30 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>email</th>
+            <th>role</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% users.forEach(user => { %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><a href="/admin/user/<%= user.id %>"><%= user.email %></a></td>
+                <td>
+                    <form action="/admin/update-role" method="post" class="manage-user-form">
+                        <input type="hidden" name="id" value="<%= user.id %>" />
+                        <select name="role" class="form-control">
+                            <option value="ADMIN" <%= user.role === 'ADMIN' ? 'selected' : '' %>>Admin</option>
+                            <option value="PETUGAS" <%= user.role === 'PETUGAS' ? 'selected' : '' %>>Petugas</option>
+                            <option value="KECAMATAN" <%= user.role === 'KECAMATAN' ? 'selected' : '' %>>Kecamatan</option>
+                        </select>
+                        <input type="submit" class="btn btn-primary" value="update">
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+<br>
+<a href="/user/profile" class="btn btn-primary">PROFILE</a>

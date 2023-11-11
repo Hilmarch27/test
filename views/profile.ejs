@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p>ID : <%= person.id %></p>
+      </div>
+      <div class="col-md-6">
+        <p>Email/username : <%= person.email %></p>
+      </div>
+      <div class="col-md-6">
+        <p>Role : <%= person.role %></p>
+      </div>
+      <div class="col-md-6">
+        <p>User object :</p>
+        <pre><%= person %></pre>
+      </div>
+    </div>
+    <a class="btn btn-primary" href="/auth/logout">LOGOUT</a>
+    <br>
+    <a class="btn btn-primary" href="/admin/users">ALL USERS (only for admin)</a>
+  </div>
+  

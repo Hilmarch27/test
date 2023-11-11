@@ -1,0 +1,72 @@
+<!-- views/register.ejs -->
+
+<form action="/auth/register" method="post" class="container mt-5" id="registrationForm">
+  <div class="mb-3">
+      <label for="email" class="form-label">Email/Username</label>
+      <input type="text" name="email" id="email" class="form-control" value="<%= locals.email ? email : '' %>" />
+  </div>
+  <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" id="password" class="form-control" />
+  </div>
+  <div class="mb-3" id="kecamatanFields">
+      <!-- Fields for 'kecamatan' role -->
+      <label for="kecamatan" class="form-label">Kecamatan</label>
+      <input type="text" name="kecamatan" id="kecamatan" class="form-control" />
+      
+      <label for="kelurahan" class="form-label">Kelurahan</label>
+      <input type="text" name="kelurahan" id="kelurahan" class="form-control" />
+  </div>
+  <div class="mb-3" id="adminFields">
+      <!-- Fields for 'admin' role -->
+      <label for="kota" class="form-label">Kota</label>
+      <input type="text" name="kota" id="kota" class="form-control" />
+  </div>
+  <div class="mb-3" id="petugasFields">
+      <!-- Fields for 'petugas' role -->
+      <label for="bagian" class="form-label">Bagian</label>
+      <input type="text" name="bagian" id="bagian" class="form-control" />
+  </div>
+  <div class="mb-3">
+      <label for="role" class="form-label">Role</label>
+      <select name="role" id="role" class="form-control" onchange="updateFields()">
+          <option value="KECAMATAN">Kecamatan</option>
+          <option value="ADMIN">Admin</option>
+          <option value="PETUGAS">Petugas</option>
+      </select>
+  </div>
+  <div class="mb-3">
+      <input type="submit" value="Register" class="btn btn-primary" />
+  </div>
+</form>
+
+<div class="container mt-3">
+  <p>
+      Already have an account? <span><a href="/user/profile" class="btn btn-link">Login</a></span>
+  </p>
+</div>
+
+<script>
+  function updateFields() {
+      const role = document.getElementById('role').value;
+
+      // Hide all role-specific fields
+      document.getElementById('kecamatanFields').style.display = 'none';
+      document.getElementById('adminFields').style.display = 'none';
+      document.getElementById('petugasFields').style.display = 'none';
+
+      // Show fields based on the selected role
+      if (role === 'KECAMATAN') {
+          document.getElementById('kecamatanFields').style.display = 'block';
+      } else if (role === 'ADMIN') {
+          document.getElementById('adminFields').style.display = 'block';
+      } else if (role === 'PETUGAS') {
+          document.getElementById('petugasFields').style.display = 'block';
+      }
+  }
+
+  // Initially hide all role-specific fields
+  document.getElementById('kecamatanFields').style.display = 'none';
+  document.getElementById('adminFields').style.display = 'none';
+  document.getElementById('petugasFields').style.display = 'none';
+</script>
