@@ -2,10 +2,10 @@
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
-const { ensureAdmin, ensureAuthentication } = require('../middlewares/authMiddleware');
+const { ensureAuthentication } = require('../middlewares/authMiddleware');
 
-router.get('/users', ensureAuthentication, ensureAdmin, adminController.getUsers);
-router.get('/user/:id', ensureAdmin, adminController.getUserById);
-router.post('/update-role', ensureAdmin, adminController.updateUserRole);
+router.get('/users',   adminController.getUsers);
+router.get('/user/:id',  ensureAuthentication, adminController.getUserById);
+router.post('/update-role', ensureAuthentication, adminController.updateUserRole);
 
 module.exports = router;

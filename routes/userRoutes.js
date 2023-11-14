@@ -3,9 +3,6 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const { ensureAuthentication} = require('../middlewares/authMiddleware');
 
-router.get('/profile', ensureAuthentication, userController.renderProfile);
-
-// Rute tambahan berdasarkan peran
-router.get('/kecamatan', ensureAuthentication, userController.renderKecamatanPage);
-
+router.get('/kecamatan',  userController.renderKecamatanPage);
+router.get('/profile', ensureAuthentication, ensureKecamatan, userController.renderProfile);
 module.exports = router;

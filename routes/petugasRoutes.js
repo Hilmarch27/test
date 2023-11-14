@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const petugasController = require('../controllers/petugasController');
-const {ensurePetugas } = require('../middlewares/authMiddleware');
+const { ensureAuthentication } = require('../middlewares/authMiddleware');
 
-router.get('/users',  petugasController.renderPetugasPage);
+router.get('/users', petugasController.renderPetugasPage);
 
 module.exports = router;
